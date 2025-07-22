@@ -3,6 +3,41 @@ import { Tile } from "../../components/Dashboard/Tiles";
 import { DashboardResponse } from "../../dummyData/dummyData";
 import { Users } from "../Users/Users";
 import GreetingHeader from "../../components/Dashboard/GreetingHeader";
+import { StatTile } from "../../components/Dashboard/StatTile";
+import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import InsightsOutlinedIcon from "@mui/icons-material/InsightsOutlined";
+
+type StatTileProps = {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  delta: {
+    value: string;
+    type: "increase" | "decrease";
+    unit?: string;
+  };
+};
+const statsData: StatTileProps[] = [
+  {
+    icon: <ThumbUpAltOutlinedIcon />,
+    label: "Finished",
+    value: "18",
+    delta: { value: "+8", type: "increase", unit: "tasks" },
+  },
+  {
+    icon: <AccessTimeIcon />,
+    label: "Tracked",
+    value: "31h",
+    delta: { value: "-6", type: "decrease", unit: "hours" },
+  },
+  {
+    icon: <InsightsOutlinedIcon />,
+    label: "Efficiency",
+    value: "93%",
+    delta: { value: "+12%", type: "increase" },
+  },
+];
 
 export const Dashboard = () => {
   return (
@@ -10,13 +45,13 @@ export const Dashboard = () => {
       {/* <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"> */}
-        {/* Tiles */}
-        {/* {DashboardResponse.dashboardStats.map((stat: any) => (
+      {/* Tiles */}
+      {/* {DashboardResponse.dashboardStats.map((stat: any) => (
           <Tile key={stat.id} stat={stat} />
         ))} */}
 
-        {/* BarChart */}
-        {/* <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl overflow-hidden">
+      {/* BarChart */}
+      {/* <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl overflow-hidden">
           <h2 className="text-xl font-semibold mb-4 text-gray-700">
             Monthly Performance
           </h2>
@@ -31,16 +66,20 @@ export const Dashboard = () => {
           />
         </div> */}
 
-        {/* Users */}
-        {/* <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl overflow-hidden">
+      {/* Users */}
+      {/* <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl overflow-hidden">
           <Users contain />
         </div> */}
       {/* </div> */}
-      <GreetingHeader
-        name="Margaret"
-        date="16 May, 2023"
-      
-      />
+      <GreetingHeader name="Margaret" date="16 May, 2023" />
+
+      <div className="bg-white p-4 flex justify-between divide-x divide-gray-200 border-y border-gray-200">
+        {statsData.map((item, index) => (
+          <div key={index} className="w-full px-4 first:pl-0 last:pr-0">
+            <StatTile {...item} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
