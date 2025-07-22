@@ -19,8 +19,8 @@ function App() {
           </Drawer>
         </div>
 
-        <Dashboard />
-        {/* <Users /> */}
+        {/* <Dashboard /> */}
+        <Users />
       </div>
     </>
   );
