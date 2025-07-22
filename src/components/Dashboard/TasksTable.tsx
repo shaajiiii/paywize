@@ -1,4 +1,3 @@
-
 import { SectionHeader } from "../Common/SectionHeader";
 
 import TroubleshootOutlinedIcon from "@mui/icons-material/TroubleshootOutlined";
@@ -30,34 +29,33 @@ const dummyItems = [
   },
 ];
 
-
 export const TasksTable = ({ contain }: any) => {
-//   const [users, setUsers] = useState<any[]>([]);
-//   const [page, setPage] = useState(1);
-//   const [rowsPerPage, setRowsPerPage] = useState(5);
-//   const [loading, setLoading] = useState(false);
+  //   const [users, setUsers] = useState<any[]>([]);
+  //   const [page, setPage] = useState(1);
+  //   const [rowsPerPage, setRowsPerPage] = useState(5);
+  //   const [loading, setLoading] = useState(false);
 
-//   const fetchUsers = async () => {
-//     setLoading(true);
-//     try {
-//       const data = await getAllUsers({
-//         page,
-//         limit: rowsPerPage,
-//       });
-//       setUsers(data);
-//     } catch (err) {
-//       console.error("Error fetching users", err);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
+  //   const fetchUsers = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const data = await getAllUsers({
+  //         page,
+  //         limit: rowsPerPage,
+  //       });
+  //       setUsers(data);
+  //     } catch (err) {
+  //       console.error("Error fetching users", err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-//   useEffect(() => {
-//     fetchUsers();
-//   }, [page, rowsPerPage]);
+  //   useEffect(() => {
+  //     fetchUsers();
+  //   }, [page, rowsPerPage]);
 
   return (
-    <div className={"min-h-screen w-full mt-6"}>
+    <div className={"w-full mt-6"}>
       <SectionHeader title="Current Tasks" subTitle="Done 30%">
         {/* <Select
           labelId="demo-simple-select-label"

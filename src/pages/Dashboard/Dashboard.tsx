@@ -8,6 +8,10 @@ import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import InsightsOutlinedIcon from "@mui/icons-material/InsightsOutlined";
 import { TasksTable } from "../../components/Dashboard/TasksTable";
+import CustomLineChart from "../../components/Dashboard/LineChart";
+import { SectionHeader } from "../../components/Common/SectionHeader";
+import DateRangeSelect from "../../components/Common/CustomSelectDropdown";
+import { useState } from "react";
 
 type StatTileProps = {
   icon: React.ReactNode;
@@ -40,7 +44,10 @@ const statsData: StatTileProps[] = [
   },
 ];
 
+const options = ["01–07 May", "08–14 May", "15–21 May", "22–28 May"];
+
 export const Dashboard = () => {
+  const [selectedRange, setSelectedRange] = useState("01–07 May");
   return (
     <div className="min-h-screen p-12 overflow-x-hidden bg-white">
       {/* <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard</h1>
@@ -50,7 +57,6 @@ export const Dashboard = () => {
       {/* {DashboardResponse.dashboardStats.map((stat: any) => (
           <Tile key={stat.id} stat={stat} />
         ))} */}
-
       {/* BarChart */}
       {/* <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl overflow-hidden">
           <h2 className="text-xl font-semibold mb-4 text-gray-700">
@@ -66,18 +72,14 @@ export const Dashboard = () => {
             height={300}
           />
         </div> */}
-
       {/* Users */}
       {/* <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl overflow-hidden">
           <Users contain />
         </div> */}
       {/* </div> */}
-
       {/* Welcome   */}
       <GreetingHeader name="Margaret" date="16 May, 2023" />
-
       {/* stat tiles  */}
-
       <div className="bg-white p-4 flex flex-col md:flex-row justify-between divide-y md:divide-y-0 md:divide-x divide-gray-200 border-y border-gray-200">
         {statsData.map((stat, idx) => (
           <div
@@ -91,6 +93,15 @@ export const Dashboard = () => {
         ))}
       </div>
 
+      <SectionHeader title="Performance">
+        <DateRangeSelect
+          value={selectedRange}
+          options={options}
+          onChange={setSelectedRange}
+        />
+      </SectionHeader>
+
+      <CustomLineChart />
       {/* tasks table   */}
 
       <TasksTable />
