@@ -15,8 +15,8 @@ function App() {
     <>
       <Router>
         <div>
-          <div style={{ position: "absolute", top: 0, float: "right" }}>
-            <Button onClick={toggleDrawer}>Open drawer</Button>
+          <div style={{ position: "absolute", top: 0, right: 0 }}>
+            <Button onClick={toggleDrawer}>Menu</Button>
             <Drawer open={open} onClose={toggleDrawer}>
               <Menu toggleMenu={toggleDrawer} />
             </Drawer>

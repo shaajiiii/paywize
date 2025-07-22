@@ -1,45 +1,62 @@
 // import React from "react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CustomTable } from "../../components/Table/Table";
 import type { Column } from "../../components/Table/types";
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
+import axios from "../../config/axiosInstance";
+import { getAllUsers } from "../../api/users/userApi";
 
-const renderedData = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
-const columns: Column[] = [
-  { id: "name", label: "Dessert" },
-  { id: "calories", label: "Calories", align: "right" },
-  { id: "fat", label: "Fat (g)", align: "right" },
-  { id: "carbs", label: "Carbs (g)", align: "right" },
-  { id: "protein", label: "Protein (g)", align: "right" },
+const userColumns: Column[] = [
+  { id: "name", label: "Name" },
+  { id: "email", label: "E-mail", align: "right" },
+  //   { id: "avatar", label: "Fat (g)", align: "right" },
+  { id: "is_active", label: "Status", align: "right" },
 ];
 
 export const Users = () => {
-  const [data, setData] = useState(renderedData);
+  const [users, setUsers] = useState<any[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const getUsers = async () => {
+    const res = await axios.get("/users");
+    console.log(res.data);
+
+    return res.data;
+  };
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  //   const [page, setPage] = useState(1);
+  //   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const fetchUsers = async () => {
+    setLoading(true);
+    try {
+      const data = await getAllUsers();
+      console.log("Users>>> :", data);
+
+      setUsers(data);
+    } catch (err) {
+      console.error("Error fetching users", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, [page]);
+
   return (
     <div className="min-h-screen min-w-screen bg-gray-100 p-6">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">Users</h1>
       {/* <CustomTable rows={rows} /> */}
       <CustomTable
-        columns={columns}
-        rows={data}
+        columns={userColumns}
+        rows={users}
         loading={false}
         total={100}
         page={page}
