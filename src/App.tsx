@@ -18,7 +18,7 @@ function App() {
           <div style={{ position: "absolute", top: 0, float: "right" }}>
             <Button onClick={toggleDrawer}>Open drawer</Button>
             <Drawer open={open} onClose={toggleDrawer}>
-              <Menu />
+              <Menu toggleMenu={toggleDrawer} />
             </Drawer>
           </div>
 
