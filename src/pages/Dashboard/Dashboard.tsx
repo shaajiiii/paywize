@@ -7,6 +7,7 @@ import { StatTile } from "../../components/Dashboard/StatTile";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import InsightsOutlinedIcon from "@mui/icons-material/InsightsOutlined";
+import { TasksTable } from "../../components/Dashboard/TasksTable";
 
 type StatTileProps = {
   icon: React.ReactNode;
@@ -41,7 +42,7 @@ const statsData: StatTileProps[] = [
 
 export const Dashboard = () => {
   return (
-    <div className="min-h-screen p-6 overflow-x-hidden bg-white">
+    <div className="min-h-screen p-12 overflow-x-hidden bg-white">
       {/* <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"> */}
@@ -71,15 +72,28 @@ export const Dashboard = () => {
           <Users contain />
         </div> */}
       {/* </div> */}
+
+      {/* Welcome   */}
       <GreetingHeader name="Margaret" date="16 May, 2023" />
 
-      <div className="bg-white p-4 flex justify-between divide-x divide-gray-200 border-y border-gray-200">
-        {statsData.map((item, index) => (
-          <div key={index} className="w-full px-4 first:pl-0 last:pr-0">
-            <StatTile {...item} />
+      {/* stat tiles  */}
+
+      <div className="bg-white p-4 flex flex-col md:flex-row justify-between divide-y md:divide-y-0 md:divide-x divide-gray-200 border-y border-gray-200">
+        {statsData.map((stat, idx) => (
+          <div
+            key={idx}
+            className={`w-full ${idx === 1 ? "md:px-4" : ""} ${
+              idx === 2 ? "md:pl-4" : ""
+            } py-4 md:py-0`}
+          >
+            <StatTile {...stat} />
           </div>
         ))}
       </div>
+
+      {/* tasks table   */}
+
+      <TasksTable />
     </div>
   );
 };

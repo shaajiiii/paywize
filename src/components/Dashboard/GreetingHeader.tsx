@@ -7,7 +7,7 @@ interface GreetingHeaderProps {
 }
 
 const GreetingHeader: React.FC<GreetingHeaderProps> = ({ name, date }) => (
-  <section className="w-full bg-white p-6 flex flex-col gap-3 pb-15">
+  <section className="w-full bg-white px-0 flex flex-col gap-3 pb-15">
     <div className="flex items-center justify-between">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Hello, {name}</h1>
