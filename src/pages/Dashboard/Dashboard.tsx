@@ -10,7 +10,7 @@ import InsightsOutlinedIcon from "@mui/icons-material/InsightsOutlined";
 import { TasksTable } from "../../components/Dashboard/TasksTable";
 import CustomLineChart from "../../components/Dashboard/LineChart";
 import { SectionHeader } from "../../components/Common/SectionHeader";
-import DateRangeSelect from "../../components/Common/CustomSelectDropdown";
+import CustomSelect from "../../components/Common/CustomSelectDropdown";
 import { useState } from "react";
 
 type StatTileProps = {
@@ -94,7 +94,7 @@ export const Dashboard = () => {
       </div>
 
       <SectionHeader title="Performance">
-        <DateRangeSelect
+        <CustomSelect
           value={selectedRange}
           options={options}
           onChange={setSelectedRange}

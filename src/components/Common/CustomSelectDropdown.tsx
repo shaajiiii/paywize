@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface CustomSelectProps {
   value: string;
+  fillColor?: "#fff";
   options: string[];
   onChange: (value: string) => void;
 }
@@ -30,6 +31,7 @@ export default function CustomSelect({
   value,
   options,
   onChange,
+  fillColor,
 }: CustomSelectProps) {
   const [open, setOpen] = useState(false);
   const buttonRef = useRef<HTMLDivElement | null>(null);
@@ -43,7 +45,9 @@ export default function CustomSelect({
           px: 2.5,
           py: 0.5,
           borderRadius: 5,
-          bgcolor: "grey.100",
+          bgcolor: fillColor ?? "grey.100",
+          border: "solid",
+          borderColor: "grey.100",
           display: "flex",
           alignItems: "center",
           gap: 1.2,

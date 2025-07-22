@@ -5,6 +5,8 @@ import ManageSearchOutlinedIcon from "@mui/icons-material/ManageSearchOutlined";
 import TerminalOutlinedIcon from "@mui/icons-material/TerminalOutlined";
 import { ItemList } from "../Common/List";
 import { ThreeDotMenu } from "../Common/Dropdown";
+import CustomSelect from "../Common/CustomSelectDropdown";
+import { useState } from "react";
 const dummyItems = [
   {
     id: 1,
@@ -29,7 +31,9 @@ const dummyItems = [
   },
 ];
 
+const dropdownOptions = ["Week", "Month"];
 export const TasksTable = ({ contain }: any) => {
+  const [selectedRange, setSelectedRange] = useState("Week");
   //   const [users, setUsers] = useState<any[]>([]);
   //   const [page, setPage] = useState(1);
   //   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -57,15 +61,12 @@ export const TasksTable = ({ contain }: any) => {
   return (
     <div className={"w-full mt-6"}>
       <SectionHeader title="Current Tasks" subTitle="Done 30%">
-        {/* <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="Age"
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select> */}
+        <CustomSelect
+          value={selectedRange}
+          options={dropdownOptions} 
+          onChange={setSelectedRange}
+          fillColor="#fff"
+        />
       </SectionHeader>
 
       {/* {JSON.stringify({ rowsPerPage, page })} */}
