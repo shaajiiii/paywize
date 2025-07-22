@@ -16,8 +16,4 @@
 body {
   margin: 0;
   background-color: rgb(16, 69, 0);
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }

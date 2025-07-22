@@ -3,6 +3,8 @@ import "./App.css";
 import React from "react";
 import { Menu } from "./components/Menu/Menu";
 import { useDrawer } from "./context/AppContext";
+import { Dashboard } from "./pages/Dashboard/Dashboard";
+import { Users } from "./pages/Users/Users";
 
 function App() {
   const { open, toggleDrawer } = useDrawer();
@@ -10,13 +12,15 @@ function App() {
   return (
     <>
       <div>
-        <div>
+        <div style={{ position: "absolute", top: 0, float: "right" }}>
           <Button onClick={toggleDrawer}>Open drawer</Button>
           <Drawer open={open} onClose={toggleDrawer}>
             <Menu />
           </Drawer>
         </div>
-        <h1 className="text-2xl font-bold text-center">Dashboard</h1>
+
+        <Dashboard />
+        {/* <Users /> */}
       </div>
     </>
   );
