@@ -1,69 +1,41 @@
-# React + TypeScript + Vite
+# Dashboard & Users App (React + MUI)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple React-based dashboard with two routes: `Home` and `Users`. The app uses mock data and implements basic UI components using Material UI (MUI) and Tailwind CSS.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+### 🏠 Home (`/`)
+- Displays the main **Dashboard**.
+- Includes statistics tiles and a **Users preview component** with limited records shown.
+- Uses **dummy data** for charts and tiles — setting up a proper mock API took time.
+- For a more reusable and structured version of dashboard charts, check out the `skyGen` repo in my GitHub.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 👤 Users (`/users`)
+- Shows a full paginated list of users.
+- Integrates **MUI Table** with pagination using hardcoded total count (`72`) since the mock API didn’t provide it.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📦 Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- React
+- TypeScript
+- Tailwind CSS
+- Material UI (MUI)
+- MockAPI for sample data
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📝 Notes
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- The **Users preview component** on the dashboard shows only a few entries — for full data with pagination, go to the `/users` route.
+- While the dashboard uses hardcoded mock data, the chart and tile structure can be modularized further — as done in [skyGen repo](https://github.com/your-username/skyGen).
+
+## ⚙️ Setup
+
+```bash
+git clone <repo-url>
+yarn install
+yarn dev
