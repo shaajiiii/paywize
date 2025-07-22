@@ -31,7 +31,7 @@ This is a simple React-based dashboard with two routes: `Home` and `Users`. The 
 ## 📝 Notes
 
 - The **Users preview component** on the dashboard shows only a few entries — for full data with pagination, go to the `/users` route.
-- While the dashboard uses hardcoded mock data, the chart and tile structure can be modularized further — as done in [skyGen repo](https://github.com/your-username/skyGen).
+- While the dashboard uses hardcoded mock data, the chart and tile structure can be modularized further — as done in [skyGeni repo](https://github.com/shaajiiii/skyGeni).
 
 ## ⚙️ Setup
 
