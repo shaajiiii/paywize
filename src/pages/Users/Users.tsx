@@ -47,7 +47,6 @@ export const Users = () => {
         onPageChange={setPage}
         onRowsPerPageChange={setRowsPerPage}
       />
-      ;
     </div>
   );
 };
