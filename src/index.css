@@ -1,5 +1,4 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -12,8 +11,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+* {
+  font-family: "Montserrat", sans-serif !important;
+}
 body {
   margin: 0;
+
   /* background-color: rgb(16, 69, 0); */
 }

@@ -15,8 +15,8 @@ const drawerWidth = 240;
 const rightPanelWidth = 300;
 
 export const Layout = () => {
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
+  const isDesktop = useMediaQuery("(min-width:1200px)");
+
   const { open, toggleDrawer } = useDrawer();
 
   return (
@@ -58,10 +58,11 @@ export const Layout = () => {
           flexGrow: 1,
           padding: 3,
           overflowY: "auto",
-          maxWidth: `calc(100% - ${drawerWidth + rightPanelWidth}px)`,
+          maxWidth: isDesktop
+            ? `calc(100% - ${drawerWidth + rightPanelWidth}px)`
+            : `100%`,
         }}
       >
-        {/* <Toolbar />    */}
         <Outlet />
       </Box>
 
