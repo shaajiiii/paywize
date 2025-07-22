@@ -1,12 +1,4 @@
-import React from "react";
-import {
-  Box,
-  Drawer,
-  Button,
-  useMediaQuery,
-  useTheme,
-  Toolbar,
-} from "@mui/material";
+import { Box, Drawer, Button, useMediaQuery } from "@mui/material";
 import { useDrawer } from "../../context/AppContext";
 import { Menu } from "../Menu/Menu";
 import { Outlet } from "react-router-dom";

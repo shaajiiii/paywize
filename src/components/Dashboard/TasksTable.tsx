@@ -32,44 +32,19 @@ const dummyItems = [
 ];
 
 const dropdownOptions = ["Week", "Month"];
-export const TasksTable = ({ contain }: any) => {
+export const TasksTable = () => {
   const [selectedRange, setSelectedRange] = useState("Week");
-  //   const [users, setUsers] = useState<any[]>([]);
-  //   const [page, setPage] = useState(1);
-  //   const [rowsPerPage, setRowsPerPage] = useState(5);
-  //   const [loading, setLoading] = useState(false);
-
-  //   const fetchUsers = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const data = await getAllUsers({
-  //         page,
-  //         limit: rowsPerPage,
-  //       });
-  //       setUsers(data);
-  //     } catch (err) {
-  //       console.error("Error fetching users", err);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     fetchUsers();
-  //   }, [page, rowsPerPage]);
 
   return (
     <div className={"w-full mt-6"}>
       <SectionHeader title="Current Tasks" subTitle="Done 30%">
         <CustomSelect
           value={selectedRange}
-          options={dropdownOptions} 
+          options={dropdownOptions}
           onChange={setSelectedRange}
           fillColor="#fff"
         />
       </SectionHeader>
-
-      {/* {JSON.stringify({ rowsPerPage, page })} */}
 
       <ItemList items={dummyItems}>
         <ThreeDotMenu />
