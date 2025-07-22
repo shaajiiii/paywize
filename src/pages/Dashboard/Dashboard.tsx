@@ -1,31 +1,40 @@
-// src/pages/Dashboard.tsx
-
-import React from "react";
+import { BarChart } from "@mui/x-charts/BarChart";
+import { Tile } from "../../components/Dashboard/Tiles";
+import { DashboardResponse } from "../../dummyData/dummyData";
+import { Users } from "../Users/Users";
 
 export const Dashboard = () => {
   return (
     <div className="min-h-screen min-w-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard</h1>
+      <div className="min-h-screen bg-gray-100 p-6">
+        <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white shadow-md rounded-xl p-6">
-          <p className="text-sm text-gray-500">Total Users</p>
-          <h2 className="text-2xl font-bold text-blue-600">1,204</h2>
-        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Tiles */}
+          {DashboardResponse.dashboardStats.map((stat: any) => (
+            <Tile key={stat.id} stat={stat} />
+          ))}
 
-        <div className="bg-white shadow-md rounded-xl p-6">
-          <p className="text-sm text-gray-500">Active Subscriptions</p>
-          <h2 className="text-2xl font-bold text-green-600">782</h2>
-        </div>
+          {/* BarChart as a Grid Tile */}
+          <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl">
+            <h2 className="text-xl font-semibold mb-4 text-gray-700">
+              Monthly Performance
+            </h2>
 
-        <div className="bg-white shadow-md rounded-xl p-6">
-          <p className="text-sm text-gray-500">Monthly Revenue</p>
-          <h2 className="text-2xl font-bold text-amber-600">$45,210</h2>
-        </div>
-
-        <div className="bg-white shadow-md rounded-xl p-6">
-          <p className="text-sm text-gray-500">Support Tickets</p>
-          <h2 className="text-2xl font-bold text-red-600">37</h2>
+            <BarChart
+              xAxis={[{ data: ["group A", "group B", "group C"] }]}
+              series={[
+                { data: [4, 3, 5] },
+                { data: [1, 6, 3] },
+                { data: [2, 5, 6] },
+              ]}
+              height={300}
+            />
+          </div>
+          <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl">
+            {/* used the same page users - override with the contain prop  */}
+            <Users contain />
+          </div>
         </div>
       </div>
     </div>

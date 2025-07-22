@@ -11,26 +11,10 @@ import {
   TableFooter,
   TablePagination,
   Box,
+  Chip,
 } from "@mui/material";
 import type { CustomTableProps } from "./types";
 
-// type Column = {
-//   id: string;
-//   label: string;
-//   align?: "left" | "right" | "center" | "inherit" | "justify";
-//   render?: (value: any, row: any) => React.ReactNode;
-// };
-
-// type CustomTableProps = {
-//   columns: Column[];
-//   rows: any[];
-//   loading?: boolean;
-//   total?: number;
-//   page?: number;
-//   rowsPerPage?: number;
-//   onPageChange?: (newPage: number) => void;
-//   onRowsPerPageChange?: (rowsPerPage: number) => void;
-// };
 
 export const CustomTable: React.FC<CustomTableProps> = ({
   columns,
@@ -41,6 +25,7 @@ export const CustomTable: React.FC<CustomTableProps> = ({
   rowsPerPage = 10,
   onPageChange,
   onRowsPerPageChange,
+  contain,
 }) => {
   return (
     <TableContainer component={Paper}>
@@ -69,7 +54,18 @@ export const CustomTable: React.FC<CustomTableProps> = ({
               <TableRow key={row.id ?? i}>
                 {columns.map((col) => (
                   <TableCell key={col.id} align={col.align || "left"}>
-                    {col.render ? col.render(row[col.id], row) : row[col.id]}
+                    {col.id === "is_active" ? (
+                      <Chip
+                        label={row[col.id] ? "Active" : "Inactive"}
+                        color={row[col.id] ? "success" : "default"}
+                        size="small"
+                        // variant="outlined"
+                      />
+                    ) : col.render ? (
+                      col.render(row[col.id], row)
+                    ) : (
+                      row[col.id]
+                    )}
                   </TableCell>
                 ))}
               </TableRow>
@@ -93,9 +89,11 @@ export const CustomTable: React.FC<CustomTableProps> = ({
               onRowsPerPageChange={(e) =>
                 onRowsPerPageChange?.(parseInt(e.target.value, 10))
               }
-              rowsPerPageOptions={[5, 10, 25, 50]}
-            //   showFirstButton
-            //   showLastButton
+              // rowsPerPageOptions={[5, 10, 25, 50]}
+              rowsPerPageOptions={contain ? [] : [5, 10, 25, 50]}
+              labelRowsPerPage={contain ? "" : undefined}
+              //   showFirstButton
+              //   showLastButton
             />
           </TableRow>
         </TableFooter>

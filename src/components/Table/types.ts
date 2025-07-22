@@ -14,4 +14,5 @@ export type CustomTableProps = {
   rowsPerPage?: number;
   onPageChange?: (newPage: number) => void;
   onRowsPerPageChange?: (rowsPerPage: number) => void;
+  contain?: boolean;
 };

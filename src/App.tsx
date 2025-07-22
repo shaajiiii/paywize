@@ -1,6 +1,5 @@
 import { Button, Drawer } from "@mui/material";
 import "./App.css";
-import React from "react";
 import { Menu } from "./components/Menu/Menu";
 import { useDrawer } from "./context/AppContext";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
@@ -15,7 +14,7 @@ function App() {
     <>
       <Router>
         <div>
-          <div style={{ position: "absolute", top: 0, right: 0 }}>
+          <div className="absolute top-0 right-0">
             <Button onClick={toggleDrawer}>Menu</Button>
             <Drawer open={open} onClose={toggleDrawer}>
               <Menu toggleMenu={toggleDrawer} />
