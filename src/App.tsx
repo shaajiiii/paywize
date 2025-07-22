@@ -1,34 +1,20 @@
-import { Button, Drawer } from "@mui/material";
-import "./App.css";
-import { Menu } from "./components/Menu/Menu";
-import { useDrawer } from "./context/AppContext";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Layout } from "./components/Layout/Layout";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { Users } from "./pages/Users/Users";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ErrorPage } from "./pages/Error/Error";
 
 function App() {
-  const { open, toggleDrawer } = useDrawer();
-
   return (
-    <>
-      <Router>
-        <div>
-          <div className="absolute top-0 right-0">
-            <Button onClick={toggleDrawer}>Menu</Button>
-            <Drawer open={open} onClose={toggleDrawer}>
-              <Menu toggleMenu={toggleDrawer} />
-            </Drawer>
-          </div>
-
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
-        </div>
-      </Router>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="users" element={<Users />} />
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </Router>
   );
 }
 

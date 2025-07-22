@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { CustomTable } from "../../components/Table/Table";
 import type { Column } from "../../components/Table/types";
@@ -38,9 +37,7 @@ export const Users = ({ contain }: any) => {
 
   return (
     <div
-      className={` ${
-        contain ? "" : "min-h-screen min-w-screen bg-gray-100 p-6"
-      }  `}
+      className={` ${contain ? "" : "min-h-screen w-full bg-gray-100 p-6"}  `}
     >
       <h1
         className={`${
