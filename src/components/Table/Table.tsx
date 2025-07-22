@@ -94,8 +94,8 @@ export const CustomTable: React.FC<CustomTableProps> = ({
                 onRowsPerPageChange?.(parseInt(e.target.value, 10))
               }
               rowsPerPageOptions={[5, 10, 25, 50]}
-              showFirstButton
-              showLastButton
+            //   showFirstButton
+            //   showLastButton
             />
           </TableRow>
         </TableFooter>

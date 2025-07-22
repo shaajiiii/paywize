@@ -15,8 +15,8 @@ const userColumns: Column[] = [
 
 export const Users = () => {
   const [users, setUsers] = useState<any[]>([]);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [page, setPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const getUsers = async () => {
     const res = await axios.get("/users");
@@ -35,7 +35,10 @@ export const Users = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const data = await getAllUsers();
+      const data = await getAllUsers({
+        page,
+        limit: rowsPerPage,
+      });
       console.log("Users>>> :", data);
 
       setUsers(data);
@@ -48,17 +51,17 @@ export const Users = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, [page]);
+  }, [page, rowsPerPage]);
 
   return (
     <div className="min-h-screen min-w-screen bg-gray-100 p-6">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">Users</h1>
-      {/* <CustomTable rows={rows} /> */}
+      {/* {JSON.stringify({ rowsPerPage, page })} */}
       <CustomTable
         columns={userColumns}
         rows={users}
         loading={false}
-        total={100}
+        total={72}
         page={page}
         rowsPerPage={rowsPerPage}
         onPageChange={setPage}
