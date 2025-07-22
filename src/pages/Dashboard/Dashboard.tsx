@@ -2,20 +2,21 @@ import { BarChart } from "@mui/x-charts/BarChart";
 import { Tile } from "../../components/Dashboard/Tiles";
 import { DashboardResponse } from "../../dummyData/dummyData";
 import { Users } from "../Users/Users";
+import GreetingHeader from "../../components/Dashboard/GreetingHeader";
 
 export const Dashboard = () => {
   return (
     <div className="min-h-screen p-6 overflow-x-hidden bg-white">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard</h1>
+      {/* <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"> */}
         {/* Tiles */}
-        {DashboardResponse.dashboardStats.map((stat: any) => (
+        {/* {DashboardResponse.dashboardStats.map((stat: any) => (
           <Tile key={stat.id} stat={stat} />
-        ))}
+        ))} */}
 
         {/* BarChart */}
-        <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl overflow-hidden">
+        {/* <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl overflow-hidden">
           <h2 className="text-xl font-semibold mb-4 text-gray-700">
             Monthly Performance
           </h2>
@@ -28,13 +29,18 @@ export const Dashboard = () => {
             ]}
             height={300}
           />
-        </div>
+        </div> */}
 
         {/* Users */}
-        <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl overflow-hidden">
+        {/* <div className="col-span-1 sm:col-span-2 lg:col-span-2 bg-white p-4 shadow-md rounded-xl overflow-hidden">
           <Users contain />
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
+      <GreetingHeader
+        name="Margaret"
+        date="16 May, 2023"
+      
+      />
     </div>
   );
 };
