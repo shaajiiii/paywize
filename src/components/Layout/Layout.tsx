@@ -56,7 +56,6 @@ export const Layout = () => {
         component="main"
         sx={{
           flexGrow: 1,
-          padding: 3,
           overflowY: "auto",
           maxWidth: isDesktop
             ? `calc(100% - ${drawerWidth + rightPanelWidth}px)`
