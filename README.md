@@ -5,10 +5,12 @@ This is a simple React-based dashboard with two routes: `Home` and `Users`. The 
 ---
 
 ### 🏠 Home (`/`)
+![Dashboard Screenshot](./screenshots/dashboard.png)
 - Displays the main **Dashboard**.
 - Includes greeting, statistics tiles, line chart and tasks.
 
 ### 👤 Users (`/users`)
+![Users Screenshot](./screenshots/users.png)
 - Shows a full paginated list of users.
 - Integrates **MUI Table** with pagination using hardcoded total count (`72`) since the mock API didn’t provide it.
 
