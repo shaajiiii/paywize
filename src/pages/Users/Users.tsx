@@ -44,20 +44,9 @@ export const Users = () => {
 
   return (
     <div className="min-h-screen p-12 overflow-x-hidden bg-white">
-      {/* <h1
-        className={`${
-          contain
-            ? "text-xl font-semibold mb-4 text-gray-700"
-            : " text-3xl font-bold mb-6 text-gray-800"
-        }`}
-      >
-        Users
-      </h1> */}
-      {/* {JSON.stringify({ rowsPerPage, page })} */}
 
       <GreetingHeader
         name="Margaret"
-        date="16 May, 2023"
         description="Manage your users effortlessly"
       />
 

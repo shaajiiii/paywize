@@ -50,7 +50,6 @@ export const Dashboard = () => {
       {/* Welcome header ------  */}
       <GreetingHeader
         name="Margaret"
-        date="16 May, 2023"
         description="Track team progress here. You almost reach a goal!"
       />
 
