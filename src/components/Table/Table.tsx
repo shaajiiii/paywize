@@ -12,6 +12,9 @@ import {
   TablePagination,
   Box,
   Chip,
+  Stack,
+  Avatar,
+  Typography,
 } from "@mui/material";
 import type { CustomTableProps } from "./types";
 import { ThreeDotMenu } from "../Common/Dropdown";
@@ -59,12 +62,29 @@ export const CustomTable: React.FC<CustomTableProps> = ({
               <TableRow key={row.id ?? i}>
                 {columns.map((col) => (
                   <TableCell key={col.id} align={col.align || "left"}>
-                    {col.id === "is_active" ? (
+                    {col.id === "name" ? (
+                      <Stack direction="row" spacing={1} alignItems="center">
+                        <Avatar
+                          alt={row.name}
+                          src={row.avatar || undefined} // assumes avatar URL is in row.avatarUrl
+                          sx={{ width: 32, height: 32 }}
+                        />
+                        <Typography variant="body2">{row.name}</Typography>
+                      </Stack>
+                    ) : col.id === "is_active" ? (
                       <Chip
                         label={row[col.id] ? "Active" : "Inactive"}
                         color={row[col.id] ? "success" : "default"}
                         size="small"
-                        // variant="outlined"
+                        sx={
+                          row[col.id]
+                            ? {
+                                backgroundColor: "#e0f2ff", // light blue background
+                                color: "#0288d1", // blue text
+                                fontWeight: 500,
+                              }
+                            : {}
+                        }
                       />
                     ) : col.render ? (
                       col.render(row[col.id], row)
@@ -103,7 +123,7 @@ export const CustomTable: React.FC<CustomTableProps> = ({
                 onRowsPerPageChange?.(parseInt(e.target.value, 10))
               }
               // rowsPerPageOptions={[5, 10, 25, 50]}
-              rowsPerPageOptions={contain ? [] : [5, 10, 25, 50]}
+              rowsPerPageOptions={contain ? [] : [5, 10]}
               labelRowsPerPage={contain ? "" : undefined}
               //   showFirstButton
               //   showLastButton
