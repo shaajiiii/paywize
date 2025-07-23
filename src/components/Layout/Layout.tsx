@@ -2,6 +2,7 @@ import { Box, Drawer, Button, useMediaQuery } from "@mui/material";
 import { useDrawer } from "../../context/AppContext";
 import { Menu } from "../Menu/Menu";
 import { Outlet } from "react-router-dom";
+import { ProfileActivitySidebar } from "../Common/ActivitySideBar";
 
 const drawerWidth = 240;
 const rightPanelWidth = 300;
@@ -61,14 +62,13 @@ export const Layout = () => {
       <Box
         sx={{
           width: rightPanelWidth,
-          padding: 2,
+          // padding: 2,
           borderLeft: "1px solid #e5e7eb",
           backgroundColor: "#fff",
           display: { xs: "none", md: "block" }, // Hide on small screens
         }}
       >
-        <p className="text-sm text-gray-600">Right Panel</p>
-        {/* Replace with user profile / activity / chat */}
+        <ProfileActivitySidebar />
       </Box>
     </Box>
   );
