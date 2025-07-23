@@ -8,11 +8,10 @@ import SearchInput from "../../components/Common/SearchInput";
 const userColumns: Column[] = [
   { id: "name", label: "Name" },
   { id: "email", label: "E-mail", align: "right" },
-  //   { id: "avatar", label: "Fat (g)", align: "right" },
   { id: "is_active", label: "Status", align: "right" },
 ];
 
-export const Users = ({ contain }: any) => {
+export const Users = () => {
   const [users, setUsers] = useState<any[]>([]);
   const [searchKey, setSearchKey] = useState("");
   const [page, setPage] = useState(1);
@@ -67,6 +66,13 @@ export const Users = ({ contain }: any) => {
           onSearch={handleSearch}
           placeholder="Search..."
           debounceMs={300}
+          message={
+            searchKey && users.length > 0
+              ? `Showing ${users.length} ${
+                  users.length > 1 ? "results" : "result"
+                }`
+              : ""
+          }
         />
       </div>
 
