@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -10,6 +10,7 @@ import FitbitIcon from "@mui/icons-material/Fitbit";
 import { Typography } from "@mui/material";
 
 export function Menu({ toggleMenu }: any) {
+  const location = useLocation();
   return (
     <Box
       role="presentation"
@@ -38,22 +39,44 @@ export function Menu({ toggleMenu }: any) {
       {/* Menu Items */}
       <Box sx={{ flexGrow: 1 }}>
         <List>
-          {MENU_ROUTES.map(({ label, path, icon: IconComponent }) => (
-            <ListItem key={label} disablePadding onClick={toggleMenu}>
-              <ListItemButton component={Link} to={path}>
-                <ListItemIcon sx={{ minWidth: 32, mx:1 }}>
-                  <IconComponent />
-                </ListItemIcon>
-                <ListItemText
-                  primary={
-                    <Typography variant="body2" sx={{ fontSize: "0.875rem" }}>
-                      {label}
-                    </Typography>
-                  }
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          {MENU_ROUTES.map(({ label, path, icon: IconComponent }) => {
+            const isActive = location.pathname === path;
+
+            return (
+              <ListItem key={label} disablePadding onClick={toggleMenu}>
+                <ListItemButton
+                  component={Link}
+                  to={path}
+                  sx={{
+                    color: isActive ? "#101828" : "gray",
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 32,
+                      mx: 1,
+                      color: isActive ? "#101828" : "inherit",
+                    }}
+                  >
+                    <IconComponent />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          fontSize: "0.875rem",
+                          fontWeight: isActive ? "bold" : "normal",
+                        }}
+                      >
+                        {label}
+                      </Typography>
+                    }
+                  />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
         </List>
       </Box>
 
