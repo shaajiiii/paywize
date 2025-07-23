@@ -24,12 +24,13 @@ export const CustomTable: React.FC<CustomTableProps> = ({
   rows,
   loading = false,
   total = 0,
-  page = 0,
-  rowsPerPage = 10,
+  page = 1,
+  rowsPerPage = 5,
   onPageChange,
   onRowsPerPageChange,
   contain,
   showActions,
+  hidePagination,
 }) => {
   return (
     <TableContainer
@@ -51,9 +52,19 @@ export const CustomTable: React.FC<CustomTableProps> = ({
         <TableBody>
           {loading ? (
             <TableRow>
-              <TableCell colSpan={columns.length} align="center">
-                <Box py={4}>
-                  <CircularProgress />
+              <TableCell
+                colSpan={columns.length + (showActions ? 1 : 0)}
+                align="center"
+              >
+                <Box>
+                  <Box
+                    height={58.3 * rowsPerPage}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <CircularProgress />
+                  </Box>
                 </Box>
               </TableCell>
             </TableRow>
@@ -109,27 +120,30 @@ export const CustomTable: React.FC<CustomTableProps> = ({
           )}
         </TableBody>
 
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              sx={{
-                borderBottom: "none", // override bottom border
-              }}
-              count={total}
-              page={page}
-              rowsPerPage={rowsPerPage}
-              onPageChange={(_, newPage) => onPageChange?.(newPage)}
-              onRowsPerPageChange={(e) =>
-                onRowsPerPageChange?.(parseInt(e.target.value, 10))
-              }
-              // rowsPerPageOptions={[5, 10, 25, 50]}
-              rowsPerPageOptions={contain ? [] : [5, 10]}
-              labelRowsPerPage={contain ? "" : undefined}
-              //   showFirstButton
-              //   showLastButton
-            />
-          </TableRow>
-        </TableFooter>
+        {!hidePagination && (
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                sx={{
+                  borderBottom: "none", // override bottom border
+                }}
+                count={total}
+                page={page - 1}
+                onPageChange={(_, newPage) => onPageChange?.(newPage + 1)}
+                rowsPerPage={rowsPerPage}
+                // onPageChange={(_, newPage) => onPageChange?.(newPage)}
+                onRowsPerPageChange={(e) =>
+                  onRowsPerPageChange?.(parseInt(e.target.value, 10))
+                }
+                // rowsPerPageOptions={[5, 10, 25, 50]}
+                rowsPerPageOptions={contain ? [] : [5, 10]}
+                labelRowsPerPage={contain ? "" : undefined}
+                //   showFirstButton
+                //   showLastButton
+              />
+            </TableRow>
+          </TableFooter>
+        )}
       </Table>
     </TableContainer>
   );

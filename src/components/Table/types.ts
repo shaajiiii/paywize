@@ -16,4 +16,5 @@ export type CustomTableProps = {
   onRowsPerPageChange?: (rowsPerPage: number) => void;
   contain?: boolean;
   showActions?: boolean;
+  hidePagination?:boolean;
 };

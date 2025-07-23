@@ -3,6 +3,7 @@ import { CustomTable } from "../../components/Table/Table";
 import type { Column } from "../../components/Table/types";
 import { getAllUsers } from "../../api/users/userApi";
 import GreetingHeader from "../../components/Dashboard/GreetingHeader";
+import SearchInput from "../../components/Common/SearchInput";
 
 const userColumns: Column[] = [
   { id: "name", label: "Name" },
@@ -13,6 +14,7 @@ const userColumns: Column[] = [
 
 export const Users = ({ contain }: any) => {
   const [users, setUsers] = useState<any[]>([]);
+  const [searchKey, setSearchKey] = useState("");
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [loading, setLoading] = useState(false);
@@ -21,9 +23,10 @@ export const Users = ({ contain }: any) => {
     setLoading(true);
     try {
       const data = await getAllUsers({
-        page,
-        limit: rowsPerPage,
+        search: searchKey,
+        ...(searchKey ? {} : { page, limit: rowsPerPage }),
       });
+
       setUsers(data);
     } catch (err) {
       console.error("Error fetching users", err);
@@ -34,7 +37,11 @@ export const Users = ({ contain }: any) => {
 
   useEffect(() => {
     fetchUsers();
-  }, [page, rowsPerPage]);
+  }, [page, rowsPerPage, searchKey]);
+
+  const handleSearch = (query: string) => {
+    setSearchKey(query);
+  };
 
   return (
     <div className="min-h-screen p-12 overflow-x-hidden bg-white">
@@ -54,6 +61,15 @@ export const Users = ({ contain }: any) => {
         date="16 May, 2023"
         description="Manage your users effortlessly"
       />
+
+      <div className="pb-3 space-y-4">
+        <SearchInput
+          onSearch={handleSearch}
+          placeholder="Search..."
+          debounceMs={300}
+        />
+      </div>
+
       <CustomTable
         columns={userColumns}
         rows={users}
@@ -65,6 +81,7 @@ export const Users = ({ contain }: any) => {
         onRowsPerPageChange={setRowsPerPage}
         // contain
         showActions
+        hidePagination={!!searchKey}
       />
     </div>
   );
