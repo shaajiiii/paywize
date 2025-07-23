@@ -1,4 +1,4 @@
-// import { DashboardResponse } from "../../dummyData/dummyData";
+import { dashboardDummyResponse } from "../../dummyData/dummyData";
 import GreetingHeader from "../../components/Dashboard/GreetingHeader";
 import { StatTile } from "../../components/Dashboard/StatTile";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
@@ -8,43 +8,53 @@ import { TasksTable } from "../../components/Dashboard/TasksTable";
 import CustomLineChart from "../../components/Dashboard/LineChart";
 import { SectionHeader } from "../../components/Common/SectionHeader";
 import CustomSelect from "../../components/Common/CustomSelectDropdown";
-import { useState } from "react";
+import TroubleshootOutlinedIcon from "@mui/icons-material/TroubleshootOutlined";
+import ManageSearchOutlinedIcon from "@mui/icons-material/ManageSearchOutlined";
+import TerminalOutlinedIcon from "@mui/icons-material/TerminalOutlined";
+import { useEffect, useState } from "react";
 
-type StatTileProps = {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-  delta: {
-    value: string;
-    type: "increase" | "decrease";
-    unit?: string;
-  };
+const iconMapper: any = {
+  thumbsUp: <ThumbUpAltOutlinedIcon />,
+  clock: <AccessTimeIcon />,
+  insights: <InsightsOutlinedIcon />,
+  troubleshoot: <TroubleshootOutlinedIcon className="text-gray-600" />,
+  search: <ManageSearchOutlinedIcon className="text-gray-600" />,
+  terminal: <TerminalOutlinedIcon className="text-gray-600" />,
 };
-const statsData: StatTileProps[] = [
-  {
-    icon: <ThumbUpAltOutlinedIcon />,
-    label: "Finished",
-    value: "18",
-    delta: { value: "+8", type: "increase", unit: "tasks" },
-  },
-  {
-    icon: <AccessTimeIcon />,
-    label: "Tracked",
-    value: "31h",
-    delta: { value: "-6", type: "decrease", unit: "hours" },
-  },
-  {
-    icon: <InsightsOutlinedIcon />,
-    label: "Efficiency",
-    value: "93%",
-    delta: { value: "+12%", type: "increase" },
-  },
+
+const performanceDropdownOptions = [
+  "01-07 May",
+  "08-14 May",
+  "15-21 May",
+  "22-28 May",
 ];
 
-const options = ["01–07 May", "08–14 May", "15–21 May", "22–28 May"];
-
 export const Dashboard = () => {
-  const [selectedRange, setSelectedRange] = useState("01–07 May");
+  const [selectedRange, setSelectedRange] = useState("01-07 May");
+
+  const [stats, setStats] = useState<any>([]);
+  const [performance, setPerformance] = useState<any>({ month: "", data: [] });
+  const [tasks, setTasks] = useState<any>([]);
+
+  useEffect(() => {
+    // Simulating fetch
+    const response = dashboardDummyResponse;
+
+    // Map icon components into the response
+    const enrichedStats = response.stats.map((item) => ({
+      ...item,
+      icon: iconMapper[item.iconType],
+    }));
+
+    const enrichedTasks = response.tasks.map((task) => ({
+      ...task,
+      icon: iconMapper[task.iconType],
+    }));
+
+    setStats(enrichedStats);
+    setPerformance(response.performance);
+    setTasks(enrichedTasks);
+  }, []);
   return (
     <div className="min-h-screen p-12 overflow-x-hidden bg-white">
       {/* Welcome header ------  */}
@@ -55,7 +65,7 @@ export const Dashboard = () => {
 
       {/* stat tiles  ------------ */}
       <div className="bg-white p-4 flex flex-col md:flex-row justify-between divide-y md:divide-y-0 md:divide-x divide-gray-200 border-y border-gray-200">
-        {statsData.map((stat, idx) => (
+        {stats.map((stat: any, idx: any) => (
           <div
             key={idx}
             className={`w-full ${idx === 1 ? "md:px-4" : ""} ${
@@ -72,16 +82,19 @@ export const Dashboard = () => {
       <SectionHeader title="Performance">
         <CustomSelect
           value={selectedRange}
-          options={options}
+          options={performanceDropdownOptions}
           onChange={setSelectedRange}
         />
       </SectionHeader>
 
-      <CustomLineChart />
+      <CustomLineChart
+        data={performance?.data}
+        monthAndYear={performance.month}
+      />
       {/* Performance section with chart ------------- END*/}
 
       {/* tasks Section-----------   */}
-      <TasksTable />
+      <TasksTable taskItems={tasks} />
     </div>
   );
 };

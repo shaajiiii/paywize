@@ -1,4 +1,3 @@
-// components/CustomLineChart.tsx
 import {
   LineChart,
   Line,
@@ -8,18 +7,6 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-
-const data = [
-  { date: "01", thisMonth: 8, lastMonth: 7 },
-  { date: "02", thisMonth: 6, lastMonth: 8 },
-  { date: "03", thisMonth: 7, lastMonth: 6 },
-  { date: "04", thisMonth: 6, lastMonth: 6 },
-  { date: "05", thisMonth: 9, lastMonth: 5 },
-  { date: "06", thisMonth: 7, lastMonth: 4 },
-  { date: "07", thisMonth: 8, lastMonth: 5 },
-];
-
-const monthAndYear = "July 2025";
 
 const CustomTooltip = ({ active, payload, label, monthAndYear }: any) => {
   if (active && payload?.length) {
@@ -48,24 +35,7 @@ const CustomTooltip = ({ active, payload, label, monthAndYear }: any) => {
   return null;
 };
 
-// const CustomCursor = ({ points, activePayload }: any) => {
-//   if (!activePayload || activePayload.length === 0) return null;
-
-//   const { x } = points[0];
-//   const { coordinate } = activePayload[0]; // This gives access to { x, y }
-
-//   return (
-//     <line
-//       x1={x}
-//       x2={x}
-//       y1={coordinate.y}
-//       y2={coordinate.y + 5} // slightly extend downward if needed
-//       stroke="#94a3b8"
-//       strokeDasharray="4 4"
-//     />
-//   );
-// };
-const CustomLineChart = () => {
+const CustomLineChart = ({ data, monthAndYear }: any) => {
   return (
     <div className="w-full h-[300px]">
       <ResponsiveContainer width="100%" height="100%">
