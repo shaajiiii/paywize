@@ -14,7 +14,7 @@ import {
   Chip,
 } from "@mui/material";
 import type { CustomTableProps } from "./types";
-
+import { ThreeDotMenu } from "../Common/Dropdown";
 
 export const CustomTable: React.FC<CustomTableProps> = ({
   columns,
@@ -26,9 +26,13 @@ export const CustomTable: React.FC<CustomTableProps> = ({
   onPageChange,
   onRowsPerPageChange,
   contain,
+  showActions,
 }) => {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{ borderTop: "none", boxShadow: "none" }}
+    >
       <Table sx={{ minWidth: 650 }}>
         <TableHead>
           <TableRow>
@@ -37,6 +41,7 @@ export const CustomTable: React.FC<CustomTableProps> = ({
                 {col.label}
               </TableCell>
             ))}
+            {showActions && <TableCell align={"right"}>Actions</TableCell>}
           </TableRow>
         </TableHead>
 
@@ -68,6 +73,11 @@ export const CustomTable: React.FC<CustomTableProps> = ({
                     )}
                   </TableCell>
                 ))}
+                {showActions && (
+                  <TableCell align={"right"}>
+                    <ThreeDotMenu />
+                  </TableCell>
+                )}
               </TableRow>
             ))
           ) : (
@@ -82,6 +92,9 @@ export const CustomTable: React.FC<CustomTableProps> = ({
         <TableFooter>
           <TableRow>
             <TablePagination
+              sx={{
+                borderBottom: "none", // override bottom border
+              }}
               count={total}
               page={page}
               rowsPerPage={rowsPerPage}

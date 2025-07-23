@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CustomTable } from "../../components/Table/Table";
 import type { Column } from "../../components/Table/types";
 import { getAllUsers } from "../../api/users/userApi";
+import GreetingHeader from "../../components/Dashboard/GreetingHeader";
 
 const userColumns: Column[] = [
   { id: "name", label: "Name" },
@@ -36,10 +37,8 @@ export const Users = ({ contain }: any) => {
   }, [page, rowsPerPage]);
 
   return (
-    <div
-      className={` ${contain ? "" : "min-h-screen w-full bg-gray-100 p-6"}  `}
-    >
-      <h1
+    <div className="min-h-screen p-12 overflow-x-hidden bg-white">
+      {/* <h1
         className={`${
           contain
             ? "text-xl font-semibold mb-4 text-gray-700"
@@ -47,8 +46,14 @@ export const Users = ({ contain }: any) => {
         }`}
       >
         Users
-      </h1>
+      </h1> */}
       {/* {JSON.stringify({ rowsPerPage, page })} */}
+
+      <GreetingHeader
+        name="Margaret"
+        date="16 May, 2023"
+        description="Manage your users effortlessly"
+      />
       <CustomTable
         columns={userColumns}
         rows={users}
@@ -58,7 +63,8 @@ export const Users = ({ contain }: any) => {
         rowsPerPage={rowsPerPage}
         onPageChange={setPage}
         onRowsPerPageChange={setRowsPerPage}
-        contain
+        // contain
+        showActions
       />
     </div>
   );

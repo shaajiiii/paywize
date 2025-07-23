@@ -48,7 +48,11 @@ export const Dashboard = () => {
   return (
     <div className="min-h-screen p-12 overflow-x-hidden bg-white">
       {/* Welcome header ------  */}
-      <GreetingHeader name="Margaret" date="16 May, 2023" />
+      <GreetingHeader
+        name="Margaret"
+        date="16 May, 2023"
+        description="Track team progress here. You almost reach a goal!"
+      />
 
       {/* stat tiles  ------------ */}
       <div className="bg-white p-4 flex flex-col md:flex-row justify-between divide-y md:divide-y-0 md:divide-x divide-gray-200 border-y border-gray-200">

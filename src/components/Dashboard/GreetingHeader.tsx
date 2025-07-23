@@ -4,15 +4,21 @@ import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOu
 interface GreetingHeaderProps {
   name: string;
   date: string;
+  description?: string;
 }
 
-const GreetingHeader: React.FC<GreetingHeaderProps> = ({ name, date }) => (
+const GreetingHeader: React.FC<GreetingHeaderProps> = ({
+  name,
+  date,
+  description,
+}) => (
   <section className="w-full bg-white px-0 flex flex-col gap-3 pb-15">
     <div className="flex items-center justify-between">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Hello, {name}</h1>
         <p className="text-sm text-gray-500 font-medium mt-1">
-          Track team progress here. You almost reach a goal!
+          {description}
+  
         </p>
       </div>
       <span className="text-gray-500 font-semibold flex items-center gap-2 text-sm">
